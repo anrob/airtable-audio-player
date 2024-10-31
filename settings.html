@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Airtable Audio Player Settings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        .success {
+            background: #dff0d8;
+            color: #3c763d;
+            border: 1px solid #d6e9c6;
+        }
+        .error {
+            background: #f2dede;
+            color: #a94442;
+            border: 1px solid #ebccd1;
+        }
+    </style>
+</head>
+<body>
+    <h2>Airtable Settings</h2>
+
+    <div class="form-group">
+        <label for="apiKey">API Key:</label>
+        <input type="password" id="apiKey" placeholder="Enter your Airtable API key">
+    </div>
+
+    <div class="form-group">
+        <label for="baseId">Base ID:</label>
+        <input type="text" id="baseId" placeholder="Enter your base ID">
+    </div>
+
+    <div class="form-group">
+        <label for="tableName">Table Name:</label>
+        <input type="text" id="tableName" placeholder="Enter your table name">
+    </div>
+
+    <div class="form-group">
+        <label for="audioField">Audio Field Name:</label>
+        <input type="text" id="audioField" placeholder="Enter the field name containing audio files">
+    </div>
+
+    <button id="saveButton">Save Settings</button>
+    <button id="testConnection">Test Connection</button>
+
+    <div id="status"></div>
+
+    <script src="settings.js"></script>
+</body>
+</html>
