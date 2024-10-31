@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Airtable Audio Player Settings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+        .container {
             max-width: 600px;
             margin: 40px auto;
+            background: #2d2d2d;
             padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .form-group {
             margin-bottom: 20px;
@@ -15,15 +28,22 @@
         label {
             display: block;
             margin-bottom: 8px;
-            font-weight: bold;
+            font-weight: 500;
         }
         input {
             width: 100%;
             padding: 8px;
-            border: 1px solid #ddd;
+            border: 1px solid #404040;
             border-radius: 4px;
+            background: #1a1a1a;
+            color: #ffffff;
             box-sizing: border-box;
             font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        input:focus {
+            outline: none;
+            border-color: #4CAF50;
         }
         button {
             background: #4CAF50;
@@ -33,57 +53,57 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
             margin-right: 10px;
         }
         button:hover {
             background: #45a049;
         }
-        #status {
+        .status {
             margin-top: 20px;
             padding: 10px;
             border-radius: 4px;
             display: none;
         }
         .success {
-            background: #dff0d8;
-            color: #3c763d;
-            border: 1px solid #d6e9c6;
+            background: #43a047;
+            color: #fff;
         }
         .error {
-            background: #f2dede;
-            color: #a94442;
-            border: 1px solid #ebccd1;
+            background: #d32f2f;
+            color: #fff;
         }
     </style>
 </head>
 <body>
-    <h2>Airtable Settings</h2>
+    <div class="container">
+        <h2>Airtable Settings</h2>
+        
+        <div class="form-group">
+            <label for="apiKey">API Key:</label>
+            <input type="password" id="apiKey" placeholder="Enter your Airtable API key">
+        </div>
 
-    <div class="form-group">
-        <label for="apiKey">API Key:</label>
-        <input type="password" id="apiKey" placeholder="Enter your Airtable API key">
+        <div class="form-group">
+            <label for="baseId">Base ID:</label>
+            <input type="text" id="baseId" placeholder="Enter your base ID">
+        </div>
+
+        <div class="form-group">
+            <label for="tableName">Table Name:</label>
+            <input type="text" id="tableName" placeholder="Enter your table name">
+        </div>
+
+        <div class="form-group">
+            <label for="audioField">Audio Field Name:</label>
+            <input type="text" id="audioField" placeholder="Enter the field name containing audio files">
+        </div>
+
+        <button id="saveButton">Save Settings</button>
+        <button id="testConnection">Test Connection</button>
+
+        <div id="status"></div>
     </div>
-
-    <div class="form-group">
-        <label for="baseId">Base ID:</label>
-        <input type="text" id="baseId" placeholder="Enter your base ID">
-    </div>
-
-    <div class="form-group">
-        <label for="tableName">Table Name:</label>
-        <input type="text" id="tableName" placeholder="Enter your table name">
-    </div>
-
-    <div class="form-group">
-        <label for="audioField">Audio Field Name:</label>
-        <input type="text" id="audioField" placeholder="Enter the field name containing audio files">
-    </div>
-
-    <button id="saveButton">Save Settings</button>
-    <button id="testConnection">Test Connection</button>
-
-    <div id="status"></div>
-
     <script src="settings.js"></script>
 </body>
 </html>

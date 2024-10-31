@@ -7,6 +7,17 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('audioField').value = result.audioField || '';
     });
 
+    function showStatus(message, success) {
+        const status = document.getElementById('status');
+        status.textContent = message;
+        status.style.display = 'block';
+        status.className = 'status ' + (success ? 'success' : 'error');
+        
+        setTimeout(() => {
+            status.style.display = 'none';
+        }, 3000);
+    }
+
     // Save settings
     document.getElementById('saveButton').addEventListener('click', () => {
         const settings = {
@@ -16,13 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
             audioField: document.getElementById('audioField').value
         };
 
-        // Validate all fields are filled
         if (!settings.apiKey || !settings.baseId || !settings.tableName || !settings.audioField) {
             showStatus('Please fill in all fields', false);
             return;
         }
 
-        // Save to chrome.storage
         chrome.storage.local.set(settings, () => {
             showStatus('Settings saved successfully!', true);
         });
@@ -52,8 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const data = await response.json();
-
-            // Check if the audio field exists in the first record
+            
             if (data.records.length > 0) {
                 if (data.records[0].fields.hasOwnProperty(audioField)) {
                     showStatus('Connection successful and audio field found!', true);
@@ -63,20 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 showStatus('Connection successful but table is empty', true);
             }
-
         } catch (error) {
             showStatus('Connection failed. Please check your credentials.', false);
         }
     });
 });
-
-function showStatus(message, success) {
-    const status = document.getElementById('status');
-    status.textContent = message;
-    status.style.display = 'block';
-    status.className = success ? 'success' : 'error';
-
-    setTimeout(() => {
-        status.style.display = 'none';
-    }, 3000);
-}
